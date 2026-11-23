@@ -19,4 +19,4 @@ documentacion/  PDF final con enunciado, consulta y captura
 ## Normas
 - **Nunca** se trabaja en `main`. Ramas `feature/...` a partir de `develop`.
 - Todo entra por **Pull Request** a `develop`; el jefe revisa y fusiona.
-- Ver la **Wiki** para el flujo completo y las tareas.
+- Ver la **Wiki** ([`wiki/Home.md`](wiki/Home.md)) para el flujo completo y las tareas.

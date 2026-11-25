@@ -79,23 +79,35 @@ Debes ver cuatro líneas: `origin` apunta a tu fork y `upstream` al de Raúl.
 1. En el tablero (enlace «Tablero de tareas» de la tabla de arriba) mueve tu tarea de **TO DO** a **DOING**.
 2. Trae lo último de `develop` y crea tu rama desde ahí:
 ```
-git fetch upstream
-git switch -c develop upstream/develop
+git switch develop
+git pull upstream develop
 git switch -c feature/7-pdf-final
 ```
-Si `develop` ya existe, usa `git switch develop` y luego `git pull upstream develop`.
+`develop` ya viene creada al clonar tu fork: no hay que crearla, solo traer lo último de `upstream`.
+Comprueba que estás en tu rama: `git branch` tiene que marcar con `*` la línea `feature/7-pdf-final`.
 
 > 📸 **Captura para el documento:** Rama creada: la terminal con `git switch -c …` y el tablero con tu tarea en DOING.
 
 ## Paso 5. Hacer el cambio
 
-Trabaja con tu editor como siempre. Cuando termines una parte que funcione:
+1. Exporta el PDF: en el documento compartido, **Archivo → Descargar → Documento PDF**.
+2. Cópialo **dentro de la carpeta que clonaste**, en su subcarpeta `documentacion`: `Documentos\practica5-anexo2-sql\documentacion\`. Si lo dejas en Descargas o en otra carpeta, Git no lo ve.
+3. Cámbiale el nombre a `anexo2-consultas.pdf`. Ojo: Windows oculta las extensiones y es fácil acabar con `anexo2-consultas.pdf.pdf`. Compruébalo desde la terminal (tienes que estar en la carpeta del repositorio):
+```
+ls documentacion
+```
+Tiene que salir exactamente `anexo2-consultas.pdf`. Si sale `anexo2-consultas.pdf.pdf`, arréglalo con:
+```
+git mv -f documentacion/anexo2-consultas.pdf.pdf documentacion/anexo2-consultas.pdf 2>/dev/null || mv documentacion/anexo2-consultas.pdf.pdf documentacion/anexo2-consultas.pdf
+```
+4. Ahora sí, prepara el archivo y haz el commit:
 ```
 git status
 git add documentacion/anexo2-consultas.pdf
 git commit -m "docs(pdf): añade el PDF final del Anexo II (#7)"
 ```
-- `git status` te dice qué archivos han cambiado (en rojo, sin preparar; en verde, preparados).
+- `git status` te dice qué archivos han cambiado (en rojo, sin preparar; en verde, preparados). Antes del `git add` tiene que salir en rojo `documentacion/anexo2-consultas.pdf`; después del `git add`, en verde. Si no sale, el PDF no está en la carpeta correcta o tiene otro nombre: vuelve a los puntos 2 y 3.
+- Si el commit dice `nothing to commit`, **no se ha guardado nada**: no sigas al paso 6 hasta que `git log --oneline -1` muestre tu commit.
 - `git add` prepara solo los archivos de la tarea. Nunca subas `.zip`, `.exe` ni carpetas `bin/` u `obj/`.
 - El mensaje sigue el formato `tipo(ámbito): qué hace (#nº)`. Tipos: `feat`, `fix`, `style`, `docs`.
 
@@ -149,6 +161,18 @@ git branch -d feature/7-pdf-final
 | `CONFLICT (content)` | Tú y otra persona tocasteis las mismas líneas | Abre el archivo, deja el código bueno entre `<<<<<<<`, `=======` y `>>>>>>>`, borra las marcas, `git add` y `git commit` |
 | `Permission denied` / `403` | Estás subiendo al repositorio de Raúl | Sube a `origin` (tu fork) |
 | `fatal: not a git repository` | No estás dentro de la carpeta del repositorio | `cd practica5-anexo2-sql` |
+| `pathspec '…' did not match any files` | El archivo no está donde dices o se llama distinto | `ls` para ver dónde está y cómo se llama de verdad (ojo con `.pdf.pdf`) |
+| `nothing to commit, working tree clean` | Git no ve ningún cambio: no se guarda nada | El archivo tiene que estar dentro de la carpeta del repositorio; revisa con `git status` |
+| `Please tell me who you are` | Falta configurar tu nombre o email | Repite el paso 0 y vuelve a hacer el `git commit` |
+| `has no upstream branch` | Has hecho `git push` sin `-u origin <rama>` | `git push -u origin <tu rama>` |
+| `fatal: a branch named 'develop' already exists` | Intentas crear `develop` y ya existe | Usa `git switch develop` (paso 4) |
 | He trabajado en `develop` sin rama | — | `git switch -c feature/<nº>-<nombre>`: los cambios se pasan a la rama nueva |
 
-Si te atascas, copia el mensaje de error entero y pásaselo a Raúl.
+Si te atascas, ejecuta esto en la carpeta del repositorio y pásale a Raúl **todo** lo que salga:
+```
+pwd
+git status
+git branch
+git remote -v
+git log --oneline -3
+```

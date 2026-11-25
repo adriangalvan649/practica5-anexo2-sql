@@ -12,6 +12,10 @@ Al final habrás subido un cambio al repositorio oficial **desde tu propio fork*
 | Tu fork (existe **después** del paso 1) | https://github.com/adriangalvan649/practica5-anexo2-sql |
 | Tablero de tareas | https://github.com/users/raulgonzalezjorge-blip/projects/3/views/2 |
 
+## Dónde van las capturas
+
+En **cada paso marcado con 📸** haz una captura de pantalla (tecla **Windows + Mayús + S**) y pégala en el **documento compartido de la práctica**, apartado **2.4 (Anexo II)**, sección «Capturas del fork y del Pull Request». Cada paso tiene su hueco amarillo «[ Pega aquí la captura ]»: pega la imagen encima y borra ese texto. Si en alguna captura sale tu email, tápalo antes de pegarla.
+
 ## Antes de empezar: qué es cada cosa
 
 - **Repositorio oficial**: el de Raúl (`raulgonzalezjorge-blip/practica5-anexo2-sql`). Solo entra código en él mediante Pull Request.
@@ -35,6 +39,8 @@ Comprueba que está bien:
 git config --global --list
 ```
 
+> 📸 **Captura para el documento:** Git configurado: la terminal con `git --version` y `git config --global user.name`.
+
 ## Paso 1. Hacer el fork (en la web)
 
 1. Inicia sesión en GitHub y entra en el repositorio oficial: `https://github.com/raulgonzalezjorge-blip/practica5-anexo2-sql`
@@ -44,6 +50,8 @@ git config --global --list
 
 3. En la pantalla siguiente deja todo como está y pulsa **Create fork**.
 4. Ahora estás en `https://github.com/adriangalvan649/practica5-anexo2-sql`. Debajo del nombre pone «forked from raulgonzalezjorge-blip/practica5-anexo2-sql». Ese es tu fork.
+
+> 📸 **Captura para el documento:** Fork creado: tu página del fork, donde se lea «forked from raulgonzalezjorge-blip/…».
 
 ## Paso 2. Clonar tu fork en tu ordenador
 
@@ -64,6 +72,8 @@ git remote -v
 ```
 Debes ver cuatro líneas: `origin` apunta a tu fork y `upstream` al de Raúl.
 
+> 📸 **Captura para el documento:** Clonado y upstream (pasos 2 y 3): la terminal con `git clone` y `git remote -v`.
+
 ## Paso 4. Ponerte al día y crear la rama de tu tarea
 
 1. En el tablero (enlace «Tablero de tareas» de la tabla de arriba) mueve tu tarea de **TO DO** a **DOING**.
@@ -74,6 +84,8 @@ git switch -c develop upstream/develop
 git switch -c feature/7-pdf-final
 ```
 Si `develop` ya existe, usa `git switch develop` y luego `git pull upstream develop`.
+
+> 📸 **Captura para el documento:** Rama creada: la terminal con `git switch -c …` y el tablero con tu tarea en DOING.
 
 ## Paso 5. Hacer el cambio
 
@@ -89,11 +101,15 @@ git commit -m "docs(pdf): añade el PDF final del Anexo II (#7)"
 
 Repite `add` + `commit` cada vez que termines algo: mejor varios commits pequeños que uno enorme.
 
+> 📸 **Captura para el documento:** Commit: la terminal con `git status` y `git commit`.
+
 ## Paso 6. Subir la rama a tu fork
 ```
 git push -u origin feature/7-pdf-final
 ```
 Si sale `Permission denied` o `403`, estás subiendo a `upstream`: sube a `origin`.
+
+> 📸 **Captura para el documento:** Push: la terminal con `git push -u origin …`.
 
 ## Paso 7. Abrir el Pull Request
 
@@ -106,6 +122,8 @@ Si sale `Permission denied` o `403`, estás subiendo a `upstream`: sube a `origi
 Así se ven los Pull Request ya fusionados del Anexo I:
 
 ![Lista de Pull Request fusionados](https://raw.githubusercontent.com/raulgonzalezjorge-blip/practica5-sitio-web/develop/wiki/img/guia-prs.png)
+
+> 📸 **Captura para el documento:** Pull Request abierto: la página del Pull Request con `base: develop` y «Closes #…».
 
 ## Paso 8. Si el jefe pide cambios
 
@@ -120,6 +138,8 @@ git pull upstream develop
 git push origin develop
 git branch -d feature/7-pdf-final
 ```
+
+> 📸 **Captura para el documento:** Fusionado: el Pull Request en morado («Merged») y tu tarea en DONE.
 
 ## Errores frecuentes
 

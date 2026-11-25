@@ -98,7 +98,7 @@ ls documentacion
 ```
 Tiene que salir exactamente `anexo2-consultas.pdf`. Si sale `anexo2-consultas.pdf.pdf`, arréglalo con:
 ```
-git mv -f documentacion/anexo2-consultas.pdf.pdf documentacion/anexo2-consultas.pdf 2>/dev/null || mv documentacion/anexo2-consultas.pdf.pdf documentacion/anexo2-consultas.pdf
+mv documentacion/anexo2-consultas.pdf.pdf documentacion/anexo2-consultas.pdf
 ```
 4. Ahora sí, prepara el archivo y haz el commit:
 ```
